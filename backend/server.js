@@ -34,16 +34,16 @@ const con = mysql.createConnection({
 //     }
 //   });
 
-// app.get("/users", (req, res) => {
-//   const sql = "SELECT * FROM employee";
-//   con.query(sql, (err, data) => {
-//     if (err) {
-//       console.log(res.json(err));
-//     } else {
-//       console.log(res.json(data));
-//     }
-//   });
-// });
+app.post("/employee", (req, res) => {
+  const sql = "SELECT * FROM employee";
+  con.query(sql, (err, data) => {
+    if (err) {
+      console.log(res.json(err));
+    } else {
+      console.log(res.json(data));
+    }
+  });
+});
 
 
 // const sql = "INSERT INTO users('Name', 'Email', 'Password') VALUES(?)";
