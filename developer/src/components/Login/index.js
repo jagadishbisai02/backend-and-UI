@@ -19,10 +19,10 @@ class Login extends Component {
     const Details = {username, password}
     event.preventDefault();
     if (username !== undefined && password !== undefined) {
-      axios.post('http://localhost:3002/login', Details)
-      history.push('/')
-    }else{
+      axios.post('http://localhost:3002/employee', Details)
       history.push('/login')
+    }else{
+      history.push('/')
     }
   };
 
