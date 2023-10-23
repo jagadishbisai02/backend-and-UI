@@ -1,5 +1,5 @@
 import { Component } from "react";
-import axios from 'axios';
+import axios from "axios";
 import "./index.css";
 
 class Register extends Component {
@@ -24,13 +24,15 @@ class Register extends Component {
   onClickRegistor = (event) => {
     const { name, email, password, repassword } = this.state;
     const { history } = this.props;
+    const data = {name, email, password}
     event.preventDefault();
     if (name && email && password && password === repassword) {
-      axios
-        .post("http://localhost:3002/register", {name, email, password})
-        .then((res) => {console.log(res);history.push("/login");})
+      axios.post("http://localhost:3001/register", data)
+        .then((res) => {
+          console.log(res.data);
+          history.push("/login");
+        })
         .catch((err) => console.log(err));
-      
     } else {
       history.push("/register");
     }

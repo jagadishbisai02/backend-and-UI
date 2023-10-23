@@ -3,10 +3,10 @@ import axios from "axios";
 import "./index.css";
 
 class Login extends Component {
-  state = { username: "", password: "" };
+  state = { email: "", password: "" };
 
   getUsername = (event) => {
-    this.setState({ username: event.target.value });
+    this.setState({ email: event.target.value });
   };
 
   getPassword = (event) => {
@@ -15,11 +15,13 @@ class Login extends Component {
 
   onClickSubmit = (event) => {
     const {history} = this.props
-    const { username, password } = this.state;
-    const Details = {username, password}
+    const { email, password } = this.state;
+    const data = {email: email, password: password}
     event.preventDefault();
-    if (username !== undefined && password !== undefined) {
-      axios.post('http://localhost:3002/employee', Details)
+    if (email !== undefined && password !== undefined) {
+      axios.post('http://localhost:3001/login', data).then((response) => {
+        console.log(response.data);
+      });
       history.push('/login')
     }else{
       history.push('/')
@@ -27,7 +29,7 @@ class Login extends Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
     return (
       <div className="form-container">
@@ -41,7 +43,7 @@ class Login extends Component {
               type="text"
               id="userName"
               className="inputs"
-              value={username}
+              value={email}
               onChange={this.getUsername}
               placeholder="username"
             />
