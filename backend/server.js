@@ -1,6 +1,8 @@
 const express = require("express");
-const mysql = require("mysql");
+const mongoose = require("mongoose");
+// const mysql = require("mysql");
 const cors = require("cors");
+const EmployeeModel = require("./model/employee");
 
 const app = express();
 app.use(cors());
@@ -12,54 +14,62 @@ app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "mydata",
-  connectionLimit: 10,
-});
+// const connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "mydata",
+//   connectionLimit: 10,
+// });
+
+mongoose.connect("mongodb://192.168.147.57:27017/mydb")
+  .then(() => {
+    console.log("mongoose connected");
+  })
+  .catch(() => {
+    console.log("failed");
+  });
 
 // for checking sqldb coonection
-connection.connect((error) => {
-  if (error) {
-    console.log("error");
-  } else {
-    console.log("connected");
-  }
-});
+// connection.connect((error) => {
+//   if (error) {
+//     console.log("error");
+//   } else {
+//     console.log("connected");
+//   }
+// });
 
 // to display the data from sql server
-const sql = "SELECT * FROM employee";
-connection.query(sql, (err, data) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(data);
-  }
-});
+// const sql = "SELECT * FROM employee";
+// connection.query(sql, (err, data) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(data);
+//   }
+// });
 
 // for post login page data to database
-app.post("/login", async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+// app.post("/login", async (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
 
-  connection.query(
-    "SELECT * FROM employee WHERE Email = ? AND Password = ?",
-    [email, password],
-    (err, result) => {
-      if (err) {
-        res.send({ err: err });
-      }
-      if (result) {
-        res.send(result);
-        res.send({ message: "You logged in" });
-      } else {
-        res.send({ message: "Wrong combination" });
-      }
-    }
-  );
-});
+//   connection.query(
+//     "SELECT * FROM employee WHERE Email = ? AND Password = ?",
+//     [email, password],
+//     (err, result) => {
+//       if (err) {
+//         res.send({ err: err });
+//       }
+//       if (result) {
+//         res.send(result);
+//         res.send({ message: "You logged in" });
+//       } else {
+//         res.send({ message: "Wrong combination" });
+//       }
+//     }
+//   );
+// });
 
 // const sql = "INSERT INTO users('Name', 'Email', 'Password') VALUES(?)";
 //   const values = [req.body.name, req.body.email, req.body.password];
@@ -69,20 +79,26 @@ app.post("/login", async (req, res) => {
 //   });
 
 // for post register page data to database
-app.post("/register", async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
+// app.post("/register", async (req, res) => {
+//   const name = req.body.name;
+//   const email = req.body.email;
+//   const password = req.body.password;
 
-  connection.query(
-    "INSERT INTO employee (Name, Email, Password) VALUES (?,?,?)",
-    [name, email, password],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      res.send(result);
-      res.send("registeration successful");
-    }
-  );
+//   connection.query(
+//     "INSERT INTO employee (Name, Email, Password) VALUES (?,?,?)",
+//     [name, email, password],
+//     (err, result) => {
+//       if (err) {
+//         console.log(err);
+//       }
+//       res.send(result);
+//       res.send("registeration successful");
+//     }
+//   );
+// });
+
+app.post("/registers", (req, res) => {
+  EmployeeModel.create(req.body)
+    .then((employees) => res.json(employees))
+    .catch((err) => res.json(err));
 });
