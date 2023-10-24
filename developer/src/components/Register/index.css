@@ -32,7 +32,7 @@
   width: 241px;
   height: 28px;
   background: none;
-  border: 1px solid #20e1fa;
+  border: 1px solid #1124f5;
   border-radius: 9px;
   outline: none;
   padding-left: 7px;
@@ -40,6 +40,10 @@
 
 .header {
   text-align: start;
+  font-size: 28px;
+  font-family: "Roboto";
+  font-weight: 600;
+  color: #3911ed;
 }
 
 .submit-btn {
@@ -51,7 +55,8 @@
   color: #ffffff;
   padding: 5px 18px;
   border-radius: 6px;
-  margin-bottom: 25px;
+  cursor: pointer;
+  outline: none;
 }
 
 
@@ -59,23 +64,23 @@
   font-size: 19px;
   font-family: "Robto";
   font-weight: 500;
-  color: #414144;
+  color: #5555e8;
   margin-bottom: 9px;
 }
 
 .show-hide-btn {
   width: 42px;
   border: none;
-  border-left: 1px solid #20e1fa;
-  background: #c7e1e4;
+  border-left: 1px solid #2719f7;
+  background: #686bf2;
   /* margin-left: 25px; */
   height: 28px;
   font-size: 14px;
   font-family: "Roboto";
-  border-bottom-right-radius: 9px;
-  border-top-right-radius: 9px;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
   padding-left: 4px;
-  color: #eb343d;
+  color: #e7e3f6;
 }
 
 .password {
@@ -85,3 +90,12 @@
   padding-right: 9px;
 }
 
+.suggestion{
+  font-size: 19px;
+  font-family: "Roboto";
+  color:#6a6ae6
+}
+
+.link{
+  text-decoration: none;
+}

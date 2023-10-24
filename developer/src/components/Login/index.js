@@ -54,7 +54,7 @@ const Login = (props) => {
     <div className="form-container">
       <form className="login-container">
         <h1 className="header">Login</h1>
-        <div className="userfield">
+        <div className="input-field">
           <label htmlFor="email" className="labels">
             Username:
           </label>
@@ -68,7 +68,7 @@ const Login = (props) => {
             placeholder="username"
           />
         </div>
-        <div className="passwordfield">
+        <div className="input-field">
           <label htmlFor="password" className="labels">
             Password:
           </label>
@@ -91,7 +91,7 @@ const Login = (props) => {
           Login
         </button>
 
-        <p>Don't have an Account? <Link to="/register">Register</Link> </p>
+        <p className="suggestion">Don't have an Account? <Link to="/register" className="link">Register</Link> </p>
       </form>
     </div>
   );

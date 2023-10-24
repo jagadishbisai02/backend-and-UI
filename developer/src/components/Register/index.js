@@ -136,7 +136,7 @@ const Register = (props) => {
           Register
         </button>
 
-        <p>Already have an account? <Link to="/">Log In</Link></p>
+        <p className="suggestion">Already have an account? <Link to="/login" className="link">Log In</Link></p>
       </form>
     </div>
   );
