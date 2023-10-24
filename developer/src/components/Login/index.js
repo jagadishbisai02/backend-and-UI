@@ -32,7 +32,7 @@ const Login = (props) => {
     }else if(password.length < 6){
       alert("please enter valid password")
     }else{
-      const data = await fetch("http//localhost:3001/register", {
+      const data = await fetch("http://localhost:3001/register", {
         method: "POST",
         headers: {
           "Content-type": "application/json",

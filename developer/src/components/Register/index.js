@@ -43,7 +43,7 @@ const Register = (props) => {
     }else if(password !== password){
       alert("password and confirm password not match")
     }else{
-      const data = await fetch("http//localhost:3001/register", {
+      const data = await fetch("http://localhost:3001/register", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
