@@ -4,19 +4,43 @@ import "./index.css";
 
 const Login = (props) => {
   const { history } = props;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [inpval, setInpval] = useState({
+    email: "",
+    password: ""
+  });
 
-  const onClickSubmit = (event) => {
-    const data = { email: email, password: password };
+  const setVal = (event) => {
+    const { name, value } = event.target;
+
+    setInpval(() => {
+      return {
+        ...inpval,
+        [name]: value,
+      };
+    });
+  };
+
+  const onClickSubmit = async(event) => {
+    const {email, password} = inpval
     event.preventDefault();
-    if (email !== undefined && password !== undefined) {
-      axios.post("http://localhost:3001/login", data).then((response) => {
-        console.log(response.data);
+    if(email === ""){
+      alert("please enter your email")
+    }else if(!email.includes("@")){
+      alert("please enter valid email")
+    }else if(password === ""){
+      alert("please enter your password")
+    }else if(password.length < 6){
+      alert("please enter valid password")
+    }else{
+      const data = await fetch("http//localhost:3001/register", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({email, password}),
       });
-      history.push("/login");
-    } else {
-      history.push("/");
+      const res = await data.json();
+      console.log(res)
     }
   };
 
@@ -25,15 +49,16 @@ const Login = (props) => {
       <form className="login-container" onClick={onClickSubmit}>
         <h1 className="header">Login</h1>
         <div className="userfield">
-          <label htmlFor="userName" className="labels">
+          <label htmlFor="email" className="labels">
             Username:
           </label>
           <input
             type="text"
-            id="userName"
+            id="email"
             className="inputs"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            name="email"
+            value={inpval.email}
+            onChange={setVal}
             placeholder="username"
           />
         </div>
@@ -45,8 +70,9 @@ const Login = (props) => {
             type="password"
             id="password"
             className="inputs"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            name="password"
+            value={inpval.password}
+            onChange={setVal}
             placeholder="password"
           />
         </div>
