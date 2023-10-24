@@ -38,33 +38,69 @@
 }
 
 .inputs {
-  width: 100%;
+  width: 241px;
   height: 28px;
   background: none;
   border: 1px solid #20e1fa;
   border-radius: 9px;
   outline: none;
-  padding: 0px 9px;
+  padding-left: 7px;
+}
+
+.password-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 241px;
+  height: 28px;
+  background: none;
+  border: 1px solid #20e1fa;
+  border-radius: 9px;
+  outline: none;
+  padding-left: 7px;
 }
 
 .header {
   text-align: start;
 }
 
-.submit-btn{
-    width: 90px;
-    background: #2420fa;
-    border: none;
-    font-size: 16px;
-    font-family: Roboto;
-    color: #ffffff;
-    padding: 5px 18px;
-    border-radius: 6px;
+.submit-btn {
+  width: 90px;
+  background: #2420fa;
+  border: none;
+  font-size: 16px;
+  font-family: Roboto;
+  color: #ffffff;
+  padding: 5px 18px;
+  border-radius: 6px;
 }
 
-.labels{
-    font-size: 19px;
-    font-family: 'Robto';
-    font-weight: 500;
-    color: #414144;
+.labels {
+  font-size: 19px;
+  font-family: "Robto";
+  font-weight: 500;
+  color: #414144;
+}
+
+.show-hide-btn {
+  width: 42px;
+  border: none;
+  border-left: 1px solid #20e1fa;
+  background: #c7e1e4;
+  /* margin-left: 25px; */
+  height: 28px;
+  font-size: 14px;
+  font-family: "Roboto";
+  border-bottom-right-radius: 9px;
+  border-top-right-radius: 9px;
+  padding-left: 4px;
+  color: #eb343d;
+}
+
+.password {
+  background: none;
+  border: none;
+  outline: none;
+  padding-right: 9px;
 }

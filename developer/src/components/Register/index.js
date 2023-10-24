@@ -1,9 +1,11 @@
 import { useState } from "react";
+import {Link} from 'react-router-dom';
 import "./index.css";
 
 const Register = (props) => {
   const { history } = props;
-
+  const [passShow, setPassShow] = useState(false);
+  const [cpassShow, setCpassShow] = useState(false)
   const [inpval, setInpval] = useState({
     fname: "",
     email: "",
@@ -51,15 +53,20 @@ const Register = (props) => {
         body: JSON.stringify({fname, email, password, cpassword}),
       });
       const res = await data.json();
-      console.log(res)
+      // console.log(res)
+
+      if(res.status === 201){
+        alert("user registration done")
+        setInpval({...inpval,fname:"", email:"",password:"", cpassword:""})
+      }
     }
   };
 
   return (
     <div className="form-container">
-      <form className="login-container" onSubmit={onClickRegistor}>
+      <form className="register-container" onSubmit={onClickRegistor}>
         <h1 className="header">Register</h1>
-        <div className="userfield">
+        <div className="input-field">
           <label htmlFor="fname" className="labels">
             Username:
           </label>
@@ -70,10 +77,10 @@ const Register = (props) => {
             name="fname"
             value={inpval.fname}
             onChange={setVal}
-            placeholder="username"
+            placeholder="please enter your name"
           />
         </div>
-        <div className="emailField">
+        <div className="input-field">
           <label htmlFor="email" className="labels">
             Email:
           </label>
@@ -84,40 +91,52 @@ const Register = (props) => {
             name="email"
             value={inpval.email}
             onChange={setVal}
-            placeholder="abc@gmail.com"
+            placeholder="please enter your @gmail.com"
           />
         </div>
-        <div className="passwordfield">
+        <div className="input-field">
           <label htmlFor="password" className="labels">
             Password:
           </label>
-          <input
-            type="password"
-            id="password"
-            className="inputs"
-            name="password"
-            value={inpval.password}
-            onChange={setVal}
-            placeholder="password"
-          />
+          <div className="password-container">
+            <input
+              type={!passShow ? "password" : "text"}
+              id="password"
+              name="password"
+              value={inpval.password}
+              className="password"
+              onChange={setVal}
+              placeholder="please enter password"
+            />
+            <button type="button" onClick={() => setPassShow(!passShow)} className="show-hide-btn">
+              {!passShow ? "Show" : "Hide"}
+            </button>
+          </div>
         </div>
-        <div className="reEnterPasswordfield">
+        <div className="input-field">
           <label htmlFor="cpassword" className="labels">
-            Re Enter Password:
+            Confirm Password:
           </label>
-          <input
-            type="password"
-            id="cpassword"
-            className="inputs"
-            name="cpassword"
-            value={inpval.cpassword}
-            onChange={setVal}
-            placeholder="Re Enter password"
-          />
+          <div className="password-container">
+            <input
+              type={!cpassShow ? "password" : "text"}
+              id="cpassword"
+              name="cpassword"
+              value={inpval.cpassword}
+              className="password"
+              onChange={setVal}
+              placeholder="please confirm password"
+            />
+            <button type="button" onClick={() => setCpassShow(!cpassShow)} className="show-hide-btn">
+              {!cpassShow ? "Show" : "Hide"}
+            </button>
+          </div>
         </div>
         <button type="submit" className="submit-btn">
           Register
         </button>
+
+        <p>Already have an account? <Link to="/">Log In</Link></p>
       </form>
     </div>
   );

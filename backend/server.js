@@ -1,16 +1,18 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 // const mysql = require("mysql");
 const cors = require("cors");
-const EmployeeModel = require("./model/employee");
+const cookiesParser = require("cookie-parser")
+// const EmployeeModel = require("./model/employee");
 require("./db/conn");
-// const router = require("./routes/router");
+const router = require("./routes/router");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-// app.use(router);
+app.use(cookiesParser())
+app.use(router);
 
 const PORT = process.env.PORT || 3001;
 
@@ -101,8 +103,8 @@ app.listen(PORT, () => {
 //   );
 // });
 
-app.post("/register", (req, res) => {
-  EmployeeModel.create(req.body)
-    .then((employees) => res.json(employees))
-    .catch((err) => res.json(err));
-});
+// app.post("/register", (req, res) => {
+//   EmployeeModel.create(req.body)
+//     .then((employees) => res.json(employees))
+//     .catch((err) => res.json(err));
+// });
