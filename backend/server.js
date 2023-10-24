@@ -1,12 +1,16 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 // const mysql = require("mysql");
 const cors = require("cors");
 const EmployeeModel = require("./model/employee");
-
+require("./db/conn");
+const router = require("./routes/router");
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+app.use(router);
 
 const PORT = process.env.PORT || 3001;
 
@@ -22,13 +26,13 @@ app.listen(PORT, () => {
 //   connectionLimit: 10,
 // });
 
-mongoose.connect("mongodb://192.168.147.57:27017/mydb")
-  .then(() => {
-    console.log("mongoose connected");
-  })
-  .catch(() => {
-    console.log("failed");
-  });
+// mongoose.connect("mongodb://192.168.147.57:27017/mydb")
+//   .then(() => {
+//     console.log("mongoose connected");
+//   })
+//   .catch(() => {
+//     console.log("failed");
+//   });
 
 // for checking sqldb coonection
 // connection.connect((error) => {
@@ -97,8 +101,8 @@ mongoose.connect("mongodb://192.168.147.57:27017/mydb")
 //   );
 // });
 
-app.post("/registers", (req, res) => {
-  EmployeeModel.create(req.body)
-    .then((employees) => res.json(employees))
-    .catch((err) => res.json(err));
-});
+// app.post("/register", (req, res) => {
+//   EmployeeModel.create(req.body)
+//     .then((employees) => res.json(employees))
+//     .catch((err) => res.json(err));
+// });

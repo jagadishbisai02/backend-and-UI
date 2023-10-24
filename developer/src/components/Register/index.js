@@ -1,65 +1,75 @@
-import {useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import "./index.css";
 
-const Register = props => {
-  const {history} = props
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repassword, setRepassword] = useState("");
+const Register = (props) => {
+  const { history } = props;
 
-  console.log(name, email, password, repassword);
+  const [inpval, setInpval] = useState({
+    fname: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  });
 
-  const onClickRegistor = (event) => {
-    const data = { name, email, password };
+  const setVal = (event) => {
+    const { name, value } = event.target;
+
+    setInpval(() => {
+      return {
+        ...inpval,
+        [name]: value,
+      };
+    });
+  };
+
+  const onClickRegistor = async (event) => {
     event.preventDefault();
-    if (name && email && password && password === repassword) {
-      axios.post("http://localhost:3001/register", data, {
-          headers: { "Content-Type": "application/json" },
-        })
-        .then((res) => {
-          console.log(res.data);
-          history.push("/login");
-        })
-        .catch((err) => {
-          // if (err.response) {
-          //   console.log(err.response.data);
-          //   console.log(err.response.status);
-          //   console.log(err.response.headers);
-          // } else if (err.request) {
-          //   // The request was made but no response was received
-          //   // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          //   // http.ClientRequest in node.js
-          //   console.log(err.request);
-          // } else {
-          //   console.log("Error", err.message);
-          // }
-          console.log(err.toJSON().message);
-        });
-    } else {
-      history.push("/register");
+    const { fname, email, password, cpassword } = inpval;
+
+    if(fname === ""){
+      alert("please enter your name")
+    }else if(email === ""){
+      alert("please enter your email")
+    }else if(!email.includes("@")){
+      alert("please enter valid email")
+    }else if(password === ""){
+      alert("please enter your password")
+    }else if(password.length < 6){
+      alert("please enter valid password")
+    }else if(cpassword === ""){
+      alert("please enter your password")
+    }else if(cpassword.length < 6){
+      alert("please enter valid password")
+    }else if(password !== password){
+      alert("password and confirm password not match")
+    }else{
+      const data = await fetch("http//localhost:3001/register", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({fname, email, password, cpassword}),
+      });
+      const res = await data.json();
+      console.log(res)
     }
   };
 
   return (
     <div className="form-container">
-      <form
-        className="login-container"
-        onSubmit={onClickRegistor}
-        action="POST"
-      >
+      <form className="login-container" onSubmit={onClickRegistor}>
         <h1 className="header">Register</h1>
         <div className="userfield">
-          <label htmlFor="userName" className="labels">
+          <label htmlFor="fname" className="labels">
             Username:
           </label>
           <input
             type="text"
-            id="userName"
+            id="fname"
             className="inputs"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
+            name="fname"
+            value={inpval.fname}
+            onChange={setVal}
             placeholder="username"
           />
         </div>
@@ -71,8 +81,9 @@ const Register = props => {
             type="text"
             id="email"
             className="inputs"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            name="email"
+            value={inpval.email}
+            onChange={setVal}
             placeholder="abc@gmail.com"
           />
         </div>
@@ -84,21 +95,23 @@ const Register = props => {
             type="password"
             id="password"
             className="inputs"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            name="password"
+            value={inpval.password}
+            onChange={setVal}
             placeholder="password"
           />
         </div>
         <div className="reEnterPasswordfield">
-          <label htmlFor="reEnterPassword" className="labels">
+          <label htmlFor="cpassword" className="labels">
             Re Enter Password:
           </label>
           <input
             type="password"
-            id="reEnterPassword"
+            id="cpassword"
             className="inputs"
-            value={repassword}
-            onChange={(event) => setRepassword(event.target.value)}
+            name="cpassword"
+            value={inpval.cpassword}
+            onChange={setVal}
             placeholder="Re Enter password"
           />
         </div>
