@@ -1,10 +1,7 @@
 require("dotenv").config();
 const express = require("express");
-// const mongoose = require("mongoose");
-// const mysql = require("mysql");
 const cors = require("cors");
 const cookiesParser = require("cookie-parser")
-// const EmployeeModel = require("./model/employee");
 require("./db/conn");
 const router = require("./routes/router");
 const app = express();
@@ -14,7 +11,7 @@ app.use(express.json());
 app.use(cookiesParser())
 app.use(router);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8090;
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

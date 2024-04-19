@@ -1,7 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
-import { Link ,useNavigate} from "react-router-dom";
-import "./index.css";
+import { Link } from "react-router-dom";
+import "./login.css";
 
 const Login = (props) => {
   const { history } = props;
@@ -34,7 +33,7 @@ const Login = (props) => {
     } else if (password.length < 6) {
       alert("please enter valid password");
     } else {
-      const data = await fetch("http://localhost:3001/login", {
+      const data = await fetch("http://localhost:8090/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -46,7 +45,7 @@ const Login = (props) => {
         localStorage.setItem("usersdatatoken", res.result.token);
         setInpval({ ...inpval, email: "", password: "" });
       }
-      history.push('/')
+     history.push("/");
     }
   };
 
@@ -82,7 +81,11 @@ const Login = (props) => {
               onChange={setVal}
               placeholder="password"
             />
-            <button type="button" onClick={() => setPassShow(!passShow)} className="show-hide-btn">
+            <button
+              type="button"
+              onClick={() => setPassShow(!passShow)}
+              className="show-hide-btn"
+            >
               {!passShow ? "Show" : "Hide"}
             </button>
           </div>
@@ -91,7 +94,12 @@ const Login = (props) => {
           Login
         </button>
 
-        <p className="suggestion">Don't have an Account? <Link to="/register" className="link">Register</Link> </p>
+        <p className="suggestion">
+          Don't have an Account?{" "}
+          <Link to="/register" className="link">
+            Register
+          </Link>{" "}
+        </p>
       </form>
     </div>
   );
