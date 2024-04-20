@@ -1,14 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const cookiesParser = require("cookie-parser")
+const cookiesParser = require("cookie-parser");
 require("./db/conn");
 const router = require("./routes/router");
 const app = express();
 
+// app.use(cors({ origin: ["http://localhost:8090"], credentials: true }));
 app.use(cors());
 app.use(express.json());
-app.use(cookiesParser())
+app.use(cookiesParser());
 app.use(router);
 
 const PORT = process.env.PORT || 8090;

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 import "./login.css";
 
-const Login = (props) => {
-  const { history } = props;
+const Login = ({ history }) => {
   const [passShow, setPassShow] = useState(false);
   const [inpval, setInpval] = useState({
     email: "",
@@ -41,11 +41,16 @@ const Login = (props) => {
         body: JSON.stringify({ email, password }),
       });
       const res = await data.json();
-      if (res.status === 201) {
-        localStorage.setItem("usersdatatoken", res.result.token);
-        setInpval({ ...inpval, email: "", password: "" });
+      console.log(res);
+      if (res.userExists) {
+        if (res.status === 200) {
+          Cookies.set("jwt_token", res.token);
+          setInpval({ ...inpval, email: "", password: "" });
+          history.replace("/");
+        }
+      } else {
+        history.replace("/register");
       }
-     history.push("/");
     }
   };
 

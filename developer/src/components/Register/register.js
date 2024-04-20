@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
 
-const Register = () => {
+const Register = ({ history }) => {
   const [passShow, setPassShow] = useState(false);
   const [cpassShow, setCpassShow] = useState(false);
   const [inpval, setInpval] = useState({
@@ -44,7 +44,7 @@ const Register = () => {
     } else if (password !== cpassword) {
       alert("password and confirm password not match");
     } else {
-      const data = await fetch("http://localhost:3001/register", {
+      const data = await fetch("http://localhost:8090/register", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -63,6 +63,7 @@ const Register = () => {
           password: "",
           cpassword: "",
         });
+        history.replace("/login");
       }
     }
   };
