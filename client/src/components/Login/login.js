@@ -73,27 +73,25 @@ const Login = ({ history }) => {
           </label>
         </div>
         <div className="login-input-field">
-          <div className="login-input-password">
-            <input
-              type={!passShow ? "password" : "text"}
-              id="password"
-              name="password"
-              value={inpval.password}
-              className="password"
-              onChange={setVal}
-              placeholder=""
-            />
-            <button
-              type="button"
-              onClick={() => setPassShow(!passShow)}
-              className="show-hide-btn"
-            >
-              {!passShow ? "Show" : "Hide"}
-            </button>
-          </div>
-          <label htmlFor="password" className="login-labels-password">
+          <input
+            type={!passShow ? "password" : "text"}
+            id="password"
+            name="password"
+            value={inpval.password}
+            className="login-input"
+            onChange={setVal}
+            required="true"
+          />
+          <label htmlFor="email" className="login-labels">
             Password
           </label>
+          <button
+            type="button"
+            onClick={() => setPassShow(!passShow)}
+            className="show-hide-pbtn"
+          >
+            {!passShow ? "Show" : "Hide"}
+          </button>
         </div>
         <button type="submit" className="submit-btn" onClick={onClickSubmit}>
           Login

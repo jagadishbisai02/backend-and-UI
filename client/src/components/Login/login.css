@@ -7,9 +7,9 @@
 }
 
 .login-container {
-  width: 439px;
+  width: 480px;
   height: 375px;
-  background: #b0d8f7;
+  background: #cce2ed;
   border: 1px solid #d7dbd8;
   box-shadow: 0px 5px 5px 5px #ededed;
   border-radius: 10px;
@@ -36,9 +36,10 @@
   padding: 0px 30px;
   line-height: 30px;
   background: transparent;
-  border: 2px solid #2719f7;
+  border: 1px solid #1124f5;
   border-radius: 10px;
   transition: 0.1s ease;
+  height: 44px;
 }
 
 .login-labels {
@@ -49,7 +50,7 @@
   font-size: 19px;
   font-family: "Robto";
   font-weight: 500;
-  color: #414144;
+  color: #5555e8;
   padding: 0px 15px;
   transition: 0.2s ease;
 }
@@ -61,54 +62,7 @@
   padding: 0 12px;
   transform: translateX(15px) translateY(-13px);
   z-index: 1111;
-  background: #b0d8f7;
-}
-
-.login-labels-password {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  pointer-events: none;
-  margin: 0 20px;
-  font-size: 19px;
-  font-family: "Robto";
-  font-weight: 500;
-  color: #414144;
-  padding: 0px 15px;
-  transition: 0.2s ease;
-}
-
-.login-input-password {
-  width: 100%;
-  outline: none;
-  font-size: 25px;
-  display: flex;
-  line-height: 30px;
-  background: transparent;
-  border: 2px solid #2719f7;
-  border-radius: 10px;
-  transition: 0.1s ease;
-}
-
-.password {
-  width: 100%;
-  outline: none;
-  font-size: 25px;
-  line-height: 30px;
-  background: transparent;
-  border: 2px solid #2719f7;
-  border-radius: 10px;
-  transition: 0.1s ease;
-}
-
-.login-input-field .login-input .password:valid ~ .login-labels-password,
-.login-input-field .login-input .password:focus ~ .login-labels-password {
-  height: 30px;
-  line-height: 30px;
-  padding: 0 12px;
-  transform: translateX(15px) translateY(-13px);
-  z-index: 1111;
-  background: #b0d8f7;
+  background: #cce2ed;
 }
 
 .header {
@@ -130,18 +84,20 @@
   border-radius: 6px;
 }
 
-.show-hide-btn {
+.show-hide-pbtn {
+  position: absolute;
+  transform: translateY(5%);
+  right: 16px;
+  padding: 0px;
   width: 42px;
   border: none;
-  border-left: 1px solid #2719f7 !important;
-  background: #686bf2 !important;
-  margin-left: 25px;
-  height: 28px;
+  height: 40px;
   font-size: 14px;
   font-family: "Roboto";
+  background: #2420fa;
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
-  color: #e7e3f6;
+  color: #fff;
 }
 
 .password {
