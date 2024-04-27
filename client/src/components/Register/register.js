@@ -72,7 +72,7 @@ const Register = ({ history }) => {
     <div className="form-container">
       <form className="register-container" onSubmit={onClickRegistor}>
         <h1 className="header">Register</h1>
-        <div className="input-field">
+        <div className="register-input-field">
           <label htmlFor="fname" className="labels">
             Username:
           </label>
@@ -86,7 +86,7 @@ const Register = ({ history }) => {
             placeholder="please enter your name"
           />
         </div>
-        <div className="input-field">
+        <div className="register-input-field">
           <label htmlFor="email" className="labels">
             Email:
           </label>
@@ -100,11 +100,11 @@ const Register = ({ history }) => {
             placeholder="please enter your @gmail.com"
           />
         </div>
-        <div className="input-field">
+        <div className="register-input-field">
           <label htmlFor="password" className="labels">
             Password:
           </label>
-          <div className="password-container">
+          <div className="register-password-container">
             <input
               type={!passShow ? "password" : "text"}
               id="password"
@@ -123,11 +123,11 @@ const Register = ({ history }) => {
             </button>
           </div>
         </div>
-        <div className="input-field">
+        <div className="register-input-field">
           <label htmlFor="cpassword" className="labels">
             Confirm Password:
           </label>
-          <div className="password-container">
+          <div className="register-password-container">
             <input
               type={!cpassShow ? "password" : "text"}
               id="cpassword"

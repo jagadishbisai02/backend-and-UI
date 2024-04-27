@@ -41,7 +41,6 @@ const Login = ({ history }) => {
         body: JSON.stringify({ email, password }),
       });
       const res = await data.json();
-      console.log(res);
       if (res.userExists) {
         if (res.status === 200) {
           Cookies.set("jwt_token", res.token);
@@ -58,25 +57,23 @@ const Login = ({ history }) => {
     <div className="form-container">
       <form className="login-container">
         <h1 className="header">Login</h1>
-        <div className="input-field">
-          <label htmlFor="email" className="labels">
-            Username:
-          </label>
+        <div className="login-input-field">
           <input
             type="text"
             id="email"
-            className="inputs"
+            className="login-input"
             name="email"
             value={inpval.email}
             onChange={setVal}
-            placeholder="username"
+            placeholder=""
+            required="true"
           />
-        </div>
-        <div className="input-field">
-          <label htmlFor="password" className="labels">
-            Password:
+          <label htmlFor="email" className="login-labels">
+            Username
           </label>
-          <div className="password-container">
+        </div>
+        <div className="login-input-field">
+          <div className="login-input-password">
             <input
               type={!passShow ? "password" : "text"}
               id="password"
@@ -84,7 +81,7 @@ const Login = ({ history }) => {
               value={inpval.password}
               className="password"
               onChange={setVal}
-              placeholder="password"
+              placeholder=""
             />
             <button
               type="button"
@@ -94,6 +91,9 @@ const Login = ({ history }) => {
               {!passShow ? "Show" : "Hide"}
             </button>
           </div>
+          <label htmlFor="password" className="login-labels-password">
+            Password
+          </label>
         </div>
         <button type="submit" className="submit-btn" onClick={onClickSubmit}>
           Login

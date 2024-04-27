@@ -67,4 +67,20 @@ router.post("/login", async (req, res) => {
   } catch (error) {}
 });
 
+const authenticateUser = (req, res, next) => {
+  const token = req.headers.authorization; // Get token from request headers
+  try {
+    const decoded = jwt.verify(token); // Verify token
+    req.userId = decoded.userId; // Attach user ID to request
+    next();
+  } catch (error) {
+    res.status(401).json({ message: "Unauthorized" });
+  }
+};
+
+router.get("/profile", authenticateUser, async (req, res) => {
+  const data = await EmployeeModel.find();
+  res.send({ data: data, success: true });
+});
+
 module.exports = router;

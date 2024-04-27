@@ -1,11 +1,23 @@
 import { RxAvatar } from "react-icons/rx";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useHistory } from "react-router-dom";
+import { useContext, useState } from "react";
+import { SearchContext } from "../../context/context";
 import "./header.css";
 import Cookie from "js-cookie";
 
 const Navbar = () => {
   const history = useHistory();
+  const [inputValue, setInputValue] = useState("");
+  const { handleSearch } = useContext(SearchContext);
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleBtnClick = () => {
+    handleSearch(inputValue);
+  };
 
   const Logout = () => {
     Cookie.remove("jwt_token");
@@ -69,8 +81,14 @@ const Navbar = () => {
               type="search"
               placeholder="Search"
               aria-label="Search"
+              onChange={handleInputChange}
+              value={inputValue}
             />
-            <button className="btn btn-outline-primary" type="submit">
+            <button
+              className="btn btn-outline-primary"
+              type="submit"
+              onClick={handleBtnClick}
+            >
               Search
             </button>
           </form>

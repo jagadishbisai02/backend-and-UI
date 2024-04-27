@@ -1,0 +1,32 @@
+.movie-card {
+  width: 280px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 9px 13px;
+  padding: 0px 12px;
+  box-shadow: 6px 5px 17px 2px #b5b1b1;
+  border-radius: 9px;
+}
+
+.link-item {
+  text-decoration: none;
+}
+
+.movie-card img {
+  width: 250px;
+  height: auto;
+  padding: 12px;
+  border-radius: 25px;
+}
+
+.movie-card p {
+  padding: 0px 9px;
+  color: #000;
+  font-size: 16px;
+  font-family: "Courier New";
+  font-weight: 600;
+  text-align: left;
+}
