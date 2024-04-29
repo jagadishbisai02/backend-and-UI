@@ -72,68 +72,74 @@ const Register = ({ history }) => {
     <div className="form-container">
       <form className="register-container" onSubmit={onClickRegistor}>
         <h1 className="header">Register</h1>
-        <div className="register-input-field">
+        <div className="login-input-field">
           <input
             type="text"
             id="fname"
-            className="inputs"
+            className="register-input"
             name="fname"
             value={inpval.fname}
             onChange={setVal}
+            placeholder=""
+            required="true"
           />
-          <label htmlFor="fname" className="labels">
-            Username
+          <label htmlFor="email" className="register-labels">
+            First Name
           </label>
         </div>
-        <div className="register-input-field">
+        <div className="login-input-field">
           <input
             type="text"
             id="email"
-            className="inputs"
+            className="register-input"
             name="email"
             value={inpval.email}
             onChange={setVal}
+            placeholder=""
+            required="true"
           />
-          <label htmlFor="email" className="labels">
+          <label htmlFor="email" className="register-labels">
             Email
           </label>
         </div>
-        <div className="register-input-field">
+        <div className="login-input-field">
           <input
             type={!passShow ? "password" : "text"}
             id="password"
             name="password"
             value={inpval.password}
-            className="inputs"
+            className="register-input"
             onChange={setVal}
+            required="true"
           />
-          <label htmlFor="password" className="labels">
+          <label htmlFor="email" className="register-labels">
             Password
           </label>
           <button
             type="button"
             onClick={() => setPassShow(!passShow)}
-            className="register-show-hide-pbtn"
+            className="show-hide-pbtn"
           >
             {!passShow ? "Show" : "Hide"}
           </button>
         </div>
-        <div className="register-input-field">
+        <div className="login-input-field">
           <input
             type={!cpassShow ? "password" : "text"}
             id="cpassword"
             name="cpassword"
             value={inpval.cpassword}
-            className="inputs"
+            className="register-input"
             onChange={setVal}
+            required="true"
           />
-          <label htmlFor="cpassword" className="labels">
+          <label htmlFor="email" className="register-labels">
             Confirm Password
           </label>
           <button
             type="button"
             onClick={() => setCpassShow(!cpassShow)}
-            className="register-show-hide-pbtn"
+            className="show-hide-pbtn"
           >
             {!cpassShow ? "Show" : "Hide"}
           </button>

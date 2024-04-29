@@ -21,6 +21,10 @@ const Navbar = () => {
 
   const Logout = () => {
     Cookie.remove("jwt_token");
+    const token = Cookie.get("jwt_token");
+    if (token === undefined) {
+      history.push("/login");
+    }
   };
 
   const Profile = () => {

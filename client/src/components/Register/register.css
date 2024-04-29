@@ -8,7 +8,7 @@
 
 .register-container {
   width: 480px;
-  height: 530px;
+  height: 450px;
   background: #cce2ed;
   border: 1px solid #d7dbd8;
   box-shadow: 0px 5px 5px 5px #ededed;
@@ -17,30 +17,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0px 25px;
 }
-
-.register-input-field {
-  position: relative;
+.login-input-field {
   width: 450px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-bottom: 27px;
+  margin: 13px 15px;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 15px;
 }
 
-.labels {
-  position: absolute;
-  left: 0px;
-  padding: 6px 12px;
-  transition: 0.2s ease;
-  pointer-events: none;
-}
-
-.inputs {
+.register-input {
   width: 100%;
   outline: none;
-  font-size: 25px;
+  font-size: 19px;
   padding: 0px 30px;
   line-height: 30px;
   background: transparent;
@@ -50,11 +41,29 @@
   height: 44px;
 }
 
-.register-input-field .inputs:focus ~ .labels {
-  transform: translateX(15px) translateY(-20px);
-  background: #cce2ed;
-  z-index: 1111;
+.register-labels {
+  position: absolute;
+  left: 0px;
+  pointer-events: none;
+  margin: 0 20px;
+  font-size: 19px;
+  font-family: "Robto";
+  font-weight: 500;
+  color: #5555e8;
+  padding: 0px 15px;
+  transition: 0.2s ease;
 }
+
+.login-input-field .register-input:valid ~ .register-labels,
+.login-input-field .register-input:focus ~ .register-labels {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 12px;
+  transform: translateX(15px) translateY(-13px);
+  z-index: 1111;
+  background: #cce2ed;
+}
+
 
 .register-password-container {
   display: flex;
@@ -93,7 +102,7 @@
 
 .register-show-hide-pbtn {
   position: absolute;
-  transform: translateY(5%);
+  transform: translateY(8%);
   right: 2px;
   padding: 0px;
   width: 42px;

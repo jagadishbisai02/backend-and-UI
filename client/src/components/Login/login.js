@@ -71,6 +71,7 @@ const Login = ({ history }) => {
           <label htmlFor="email" className="login-labels">
             Username
           </label>
+          <span></span>
         </div>
         <div className="login-input-field">
           <input

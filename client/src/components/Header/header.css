@@ -2,3 +2,7 @@
   width: 15%;
   border-radius: 30%;
 }
+
+.navbar-nav li{
+  cursor: pointer;
+}
